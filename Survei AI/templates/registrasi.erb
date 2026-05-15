@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Admin - Universitas Terbuka</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-xl rounded-2xl w-full max-w-md p-8">
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <h1 class="text-2xl font-bold text-blue-900">Universitas Terbuka</h1>
+      <p class="text-gray-600 text-sm mt-1">Sistem Registrasi Admin</p>
+      <div class="w-16 h-1 bg-blue-800 mx-auto mt-3 rounded-full"></div>
+    </div>
+
+    <!-- Form -->
+    <form action="/admin/register" method="post" class="space-y-5">
+
+      <!-- Nama -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">Nama Lengkap</label>
+        <input type="text" name="nama" required
+          class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none">
+      </div>
+
+      <!-- Username -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">Username</label>
+        <input type="text" name="user_name" required
+          class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none">
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">Email</label>
+        <input type="email" name="email" required
+          class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">Password</label>
+        <input type="password" name="user_password" required
+          class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none">
+      </div>
+
+      <!-- Button -->
+      <button type="submit"
+        class="w-full bg-blue-900 text-white py-2 rounded-lg font-semibold hover:bg-blue-800 transition duration-300 shadow-md">
+        Daftar Admin
+      </button>
+      <% if not @ok %>
+       <script>alert("Data berhasil disimpan")</script>
+      <% else %>
+       <script>alert("Data gagal disimpan")</script>
+      <% end %>
+
+    </form>
+    <a href="/admin" class="text-blue-700 hover:underline">Login</a>
+    <!-- Footer -->
+    <div class="text-center text-xs text-gray-500 mt-6">
+      © 2026 Universitas Terbuka - Sistem Administrasi Internal
+    </div>
+
+  </div>
+
+</body>
+</html>

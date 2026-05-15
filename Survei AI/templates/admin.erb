@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login Admin - Aplikasi Survei AI UT</title>
+  <% if @succes %>
+  <div style="color:green;">
+    <%= @succes %>
+  </div>
+<% end %>
+
+<% if @error %>
+  <div style="color:red;">
+    <%= @error %>
+  </div>
+<% end %>
+
+  <!-- Tailwind (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    /* Minor polish untuk tampilan akademik */
+    body { background: linear-gradient(180deg, #f5f8fb 0%, #eef6ff 100%); }
+    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(6px); }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center font-sans">
+  <div class="max-w-lg w-full p-6">
+    <div class="glass rounded-2xl shadow-xl p-8">
+      <div class="text-center mb-6">
+        <!-- Ganti dengan logo UT jika ada -->
+        <img src="/logo-ut.png" alt="UT Logo" onerror="this.style.display='none'" class="mx-auto w-20 h-20 object-contain rounded-md" />
+        <h1 class="mt-4 text-2xl font-semibold text-blue-900">Admin Login</h1>
+        <p class="text-sm text-gray-600 mt-1">Aplikasi Survei Penggunaan AI — Universitas Terbuka (UPBJJ Kupang)</p>
+      </div>
+
+      <form action="/admin" method="post" class="space-y-5">
+        <!-- CSRF token placeholder: sesuaikan dengan mekanisme Sinatra/Rack kamu -->
+        <!-- Contoh (opsional): <input type="hidden" name="authenticity_token" value="<%= session[:csrf] %>"> -->
+
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <input id="username" name="user_name" type="text" required
+                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <div class="relative">
+            <input id="password" name="user_password" type="password" required
+                   class="mt-1 block w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <button type="button" id="togglePassword"
+                    class="absolute right-2 top-2 text-sm text-gray-500 hover:text-gray-700 focus:outline-none">
+              Show
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <label class="inline-flex items-center">
+            <input type="checkbox" name="remember" class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
+            <span class="ml-2 text-gray-700">Remember me</span>
+          </label>
+          <a href="/registrasi" class="text-blue-700 hover:underline">Belum registrasi?</a>
+        </div>
+
+        <div>
+          <button type="submit"
+                  class="w-full bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-800 transition">
+            Masuk sebagai Admin
+          </button>
+        </div>
+      </form>
+      <% if not @ok %>
+       <script>alert("Data berhasil disimpan")</script>
+      <% else %>
+       <script>alert("Data gagal disimpan")</script>
+      <% end %>
+  
+
+      <div class="mt-6 text-center text-xs text-gray-500">
+        <p>Pastikan Anda memiliki hak akses. Aktivitas admin tercatat untuk tujuan audit dan keamanan.</p>
+      </div>
+    </div>
+    
+    <div class="mt-4 text-center text-xs text-gray-500">
+      &copy; 2025 Andriano Pasmarang Denny — Universitas Terbuka Kupang
+    </div>
+  </div>
+
+  <script>
+    // Toggle show/hide password (UI only)
+    document.getElementById('togglePassword')?.addEventListener('click', function () {
+      const pwd = document.getElementById('password');
+      if (!pwd) return;
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        this.textContent = 'Hide';
+      } else {
+        pwd.type = 'password';
+        this.textContent = 'Show';
+      }
+    });
+
+    // Simple client-side validation hint (optional)
+    document.querySelector('form')?.addEventListener('submit', function(e) {
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+      if (!u || !p) {
+        e.preventDefault();
+        alert('Isi username dan password terlebih dahulu.');
+      }
+    });
+  </script>
+</body>
+</html>

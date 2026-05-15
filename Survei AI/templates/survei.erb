@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Survei - Analisis Penggunaan AI oleh Mahasiswa UT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+  <header class="bg-blue-900 text-white py-6 shadow-md">
+    <div class="container mx-auto text-center">
+      <h1 class="text-3xl font-bold">Form Survei Penggunaan AI</h1>
+      <p class="text-lg">Universitas Terbuka Kupang</p>
+    </div>
+  </header>
+
+  <main class="container mx-auto mt-10 px-4">
+    <section class="bg-white p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
+      <h2 class="text-2xl font-semibold mb-6 text-blue-900 border-b-2 pb-2">Isi Form Survei</h2>
+      <form action="/submit" method="POST" class="space-y-6">
+        <div>
+          <label for="nama" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+          <input type="text" id="nama" name="nama" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-600" />
+        </div>
+
+        <div>
+          <label for="program_studi" class="block text-gray-700 font-medium mb-2">Program Studi</label>
+          <input type="text" id="program_studi" name="program_studi" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-600" />
+        </div>
+
+        <div>
+          <label for="penggunaan_ai" class="block text-gray-700 font-medium mb-2">Seberapa sering Anda menggunakan AI (misalnya ChatGPT, Gemini, Copilot)?</label>
+          <select id="penggunaan_ai" name="penggunaan_ai" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-600">
+            <option value="">-- Pilih Jawaban --</option>
+            <option value="setiap hari">Setiap Hari</option>
+            <option value="beberapa kali seminggu">Beberapa Kali Seminggu</option>
+            <option value="jarang">Jarang</option>
+            <option value="tidak pernah">Tidak Pernah</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Platform AI yang Paling Sering Anda Gunakan</label>
+          <div class="space-y-2">
+            <label class="block"><input type="checkbox" name="platform_ai[]" value="ChatGPT" class="mr-2"> ChatGPT</label>
+            <label class="block"><input type="checkbox" name="platform_ai[]" value="Gemini" class="mr-2"> Gemini</label>
+            <label class="block"><input type="checkbox" name="platform_ai[]" value="Copilot" class="mr-2"> Copilot</label>
+            <label class="block"><input type="checkbox" name="platform_ai[]" value="Lainnya" class="mr-2"> Lainnya</label>
+          </div>
+        </div>
+
+        <div>
+          <label for="tujuan_penggunaan" class="block text-gray-700 font-medium mb-2">Untuk keperluan apa Anda biasanya menggunakan AI?</label>
+          <textarea id="tujuan_penggunaan" name="tujuan_penggunaan" rows="4" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-600"></textarea>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="bg-blue-700 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-800">Kirim Survei</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <% if not @ok %>
+   <script>alert("Data berhasil disimpan")</script>
+  <% else %>
+  <script>alert("Data gagal disimpan")</script>
+  <% end %>
+  <footer class="mt-12 bg-blue-900 text-white py-4 text-center">
+    <p>&copy; 2025 Andriano Pasmarang Denny | Universitas Terbuka Kupang</p>
+  </footer>
+</body>
+</html>

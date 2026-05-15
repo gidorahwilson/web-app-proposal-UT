@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hasil Survei Penggunaan AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 p-6">
+  <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
+    <h1 class="text-3xl font-bold text-center text-blue-700 mb-6">
+      Hasil Survei Penggunaan AI oleh Mahasiswa
+    </h1>
+
+    <% if @data.any? %>
+      <table class="min-w-full border border-gray-300 rounded-lg mb-8">
+        <thead class="bg-blue-100">
+          <tr>
+            <th class="border px-4 py-2 text-left">Nama</th>
+            <th class="border px-4 py-2 text-left">Program Studi</th>
+            <th class="border px-4 py-2 text-left">Penggunaan AI</th>
+            <th class="border px-4 py-2 text-left">Platform AI</th>
+            <th class="border px-4 py-2 text-left">Tujuan Penggunaan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @data.each do |row| %>
+            <tr class="hover:bg-gray-50">
+              <td class="border px-4 py-2"><%= row["nama"] %></td>
+              <td class="border px-4 py-2"><%= row["program_studi"] %></td>
+              <td class="border px-4 py-2"><%= row["penggunaan_ai"] %></td>
+              <td class="border px-4 py-2"><%= row["platform_ai"] %></td>
+              <td class="border px-4 py-2"><%= row["tujuan_penggunaan"] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <h2 class="text-2xl font-semibold text-blue-600 mb-4">Analisis</h2>
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <p class="text-gray-700 mb-2">
+          Jumlah responden: <strong><%= @jumlah_responden %></strong>
+        </p>
+        <p class="text-gray-700 mb-2">
+          Menggunakan AI: <strong><%= @jumlah_ai %></strong> mahasiswa
+        </p>
+        <p class="text-gray-700 mb-2">
+          Tidak menggunakan AI: <strong><%= @jumlah_non_ai %></strong> mahasiswa
+        </p>
+        <p class="text-gray-700">
+          Platform AI yang paling banyak disebut:
+          <strong><%= @platform_populer %></strong>
+        </p>
+      </div>
+
+    <% else %>
+      <p class="text-center text-gray-500">Belum ada data survei yang masuk.</p>
+    <% end %>
+
+    <div class="text-center mt-6">
+      <a href="/" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+        Kembali ke Beranda
+      </a>
+    </div>
+  </div>
+</body>
+</html>
