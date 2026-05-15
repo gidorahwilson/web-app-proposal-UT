@@ -10,10 +10,10 @@ require "mysql2"
 #require_relative "templates/login"
 set :views, "templates"
 $user = Mysql2::Client.new(
-        :host=>'localhost',
-        :username=>'root',
-        :password=>'root',
-        :database=>'survei'
+        :host=>'',
+        :username=>'',
+        :password=>'',
+        :database=>''
 )
 
 configure do
